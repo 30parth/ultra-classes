@@ -8,10 +8,8 @@ Route::inertia('/', 'welcome')->name('home');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 
-    Route::prefix('student')->name('student.')->group(function () {
-        Route::get('/', [StudentController::class, 'index'])->name('index');
-    });
-
+    Route::resource('student', StudentController::class);
+    
 });
 
 require __DIR__.'/settings.php';
