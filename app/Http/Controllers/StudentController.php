@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('student/form',);
     }
 
     /**

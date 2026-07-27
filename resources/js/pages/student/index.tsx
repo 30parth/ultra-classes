@@ -1,4 +1,4 @@
-import { index as student } from "@/routes/student";
+import { index as student , create as insertStudent} from "@/routes/student";
 import { Head, usePage } from "@inertiajs/react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -20,14 +20,13 @@ export default function StudentIndex() {
         <>
             <Head title="Student" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-
-                <div className="flex flex-col md:flex-row justify-between  gap-4">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <Input type="text" placeholder="Search .." />
-                    <div className="flex justify-end items-end">
-                        <Button>
-                            Add
-                        </Button>
-                    </div>
+                    <Button 
+                        onClick={ () => insertStudent()}
+                    >
+                        Add
+                    </Button>
                 </div>
 
             </div>
