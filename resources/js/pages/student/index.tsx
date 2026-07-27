@@ -1,5 +1,5 @@
 import { index as student , create as insertStudent} from "@/routes/student";
-import { Head, usePage } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -22,54 +22,14 @@ export default function StudentIndex() {
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <Input type="text" placeholder="Search .." />
-                    <Button 
-                        onClick={ () => insertStudent()}
-                    >
-                        Add
+                    <Button>
+                        <Link href={insertStudent().url}>
+                            Add
+                        </Link>
                     </Button>
                 </div>
-
             </div>
         </>
-
-        // <Card>
-        //     <CardHeader>
-        //         <CardTitle>Student</CardTitle>
-        //     </CardHeader>
-        //     <CardContent>
-        //         <Table>
-        //             <TableHeader>
-        //                 <TableRow>
-        //                     <TableHead>Name</TableHead>
-        //                     <TableHead>DOB</TableHead>
-        //                     <TableHead>Gender</TableHead>
-        //                     <TableHead>Admission Date</TableHead>
-        //                     <TableHead>Status</TableHead>
-        //                     <TableHead>Actions</TableHead>
-        //                 </TableRow>
-        //             </TableHeader>
-        //             <TableBody>
-        //                 {students.map((student) => (
-        //                     <TableRow key={student.id}>
-        //                         <TableCell>{student.name}</TableCell>
-        //                         <TableCell>{student.dob}</TableCell>
-        //                         <TableCell>{student.gender}</TableCell>
-        //                         <TableCell>{student.admission_date}</TableCell>
-        //                         <TableCell>{student.status}</TableCell>
-        //                         <TableCell>
-        //                             <Button variant="outline" size="sm">
-        //                                 Edit
-        //                             </Button>
-        //                             <Button variant="outline" size="sm">
-        //                                 Delete
-        //                             </Button>
-        //                         </TableCell>
-        //                     </TableRow>
-        //                 ))}
-        //             </TableBody>
-        //         </Table>
-        //     </CardContent>
-        // </Card>
     )
 }
 
