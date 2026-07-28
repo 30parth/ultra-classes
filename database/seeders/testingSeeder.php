@@ -24,8 +24,6 @@ class testingSeeder extends Seeder
             'name' => 'John Doe',
             'dob' => '2000-01-01',
             'gender' => 'male',
-            'guardian_name' => 'John Doe',
-            'guardian_contact' => '1234567890',
             'address' => '123 Main St',
             'admission_date' => '2022-01-01',
             'status' => 'active',

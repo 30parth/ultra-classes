@@ -17,14 +17,12 @@ return new class extends Migration
             $table->string('name');
             $table->date('dob')->nullable();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
-            $table->string('guardian_name');
-            $table->string('guardian_contact');
             $table->string('address')->nullable();
             $table->date('admission_date');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->string('photo_path')->nullable();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

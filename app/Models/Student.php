@@ -11,8 +11,6 @@ class Student extends Model
         'name',
         'dob',
         'gender',
-        'guardian_name',
-        'guardian_contact',
         'address',
         'admission_date',
         'status',
