@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return Inertia::render('student/form',);
+        return Inertia::render('student/form');
     }
 
     /**
@@ -33,7 +33,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

@@ -11,6 +11,7 @@ interface Props {
     error: string,
     placeholder?: string,
     name: string
+    defaultValue ?: any,
 }
 
 export default function InputWithLabel({
@@ -19,7 +20,8 @@ export default function InputWithLabel({
     required = false,
     error,
     placeholder,
-    name
+    name,
+    defaultValue,
 }: Props) {
     return (
         <div className="grid gap-2">
@@ -32,7 +34,8 @@ export default function InputWithLabel({
                 type={type}
                 required={required}
                 autoComplete={label}
-                name={label}
+                defaultValue={defaultValue}
+                name={name}
                 placeholder={placeholder}
             />
             <InputError
