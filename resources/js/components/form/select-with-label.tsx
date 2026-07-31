@@ -8,39 +8,25 @@ import {
     ComboboxList,
 } from "@/components/ui/combobox"
 
-const frameworks = [
-    {
-        "label": 'Demo',
-        "id": 1,
-    },
-    {
-        "label": 'xbc',
-        "id": 2,
-    },
-    {
-        "label": 'sdg',
-        "id": 3,
-    },
-]
-
 interface Props {
     label: string
     name: string
+    items: any
+    placeholder: string
 }
 
-export default function SelectWithLabel({ name, label }: Props) {
+export default function SelectWithLabel({ name, label, items, placeholder }: Props) {
     return (
         <Combobox
             name={name}
-            items={frameworks}
-            itemToStringValue={(item) => { item.label }}
+            items={items}
         >
-            <ComboboxInput placeholder="Select a framework" />
+            <ComboboxInput placeholder={placeholder} />
             <ComboboxContent>
                 <ComboboxEmpty>No items found.</ComboboxEmpty>
                 <ComboboxList>
                     {(item) => (
-                        <ComboboxItem key={item} value={item.label}>
+                        <ComboboxItem key={item} value={item.id}>
                             {item.label}
                         </ComboboxItem>
                     )}

@@ -33,7 +33,24 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $validated = $request->validate([
+            'name' => 'required',
+            'gender' => 'required',
+            'admission_date' => 'required',
+            'status' => 'required',
+        ]);
+
+        $student = new Student;
+        $student->user_id = auth()->id();
+        $student->name = $validated['name'];
+        $student->gender = $validated['gender'];
+        $student->admission_date = $validated['admission_date'];
+        $student->status = $validated['status'];
+        $student->save();
+
+        dd($student);
+
+        return redirect()->route('student.index');
     }
 
     /**

@@ -13,13 +13,14 @@ import {
 } from "@/components/ui/popover"
 import { Label } from "../ui/label"
 import { useEffect } from "react"
+import InputError from "../input-error"
 
 interface Props {
-    name: string
     onChange: (value: any) => void
+    error: string
 }
 
-export function DatePickerWithLabel({ name, onChange }: Props) {
+export function DatePickerWithLabel({ onChange, error }: Props) {
     const [date, setDate] = React.useState<Date>()
 
     useEffect(() => {
@@ -55,6 +56,9 @@ export function DatePickerWithLabel({ name, onChange }: Props) {
                     />
                 </PopoverContent>
             </Popover>
+            <InputError
+                message={error}
+            />
         </div>
     )
 }

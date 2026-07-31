@@ -11,7 +11,7 @@ interface Props {
     error: string,
     placeholder?: string,
     name: string
-    defaultValue ?: any,
+    defaultValue?: any,
 }
 
 export default function InputWithLabel({
@@ -40,7 +40,6 @@ export default function InputWithLabel({
             />
             <InputError
                 message={error}
-                className="mt-2"
             />
         </div>
     )

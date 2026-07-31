@@ -1,3 +1,5 @@
+import GenderDropDown from '@/components/dropdown/gender-dropdown'
+import StatusDropdown from '@/components/dropdown/status-dropdown'
 import { DatePickerWithLabel } from '@/components/form/date-picker-with-label'
 import InputWithLabel from '@/components/form/input-with-label'
 import SelectWithLabel from '@/components/form/select-with-label'
@@ -30,17 +32,21 @@ export default function StudentForm() {
                                     type="text"
                                     error={errors.name}
                                 />
-                                <InputWithLabel
-                                    label="Gender"
+                                <GenderDropDown
                                     name="gender"
-                                    type="text"
+                                    label="Gender"
+                                    required={true}
                                     error={errors.gender}
                                 />
-                                <SelectWithLabel name='sex' label='Render' />
-                                <input className='hidden' type="date" name="date" defaultValue={date} />
+                                <input className='hidden' name="admisstion_date" defaultValue={date} />
                                 <DatePickerWithLabel
-                                    name="date"
                                     onChange={(fullDate) => { setDate(fullDate) }}
+                                    error={errors.admisstion_date}
+                                />
+                                <StatusDropdown
+                                    name={'status'}
+                                    label={'Status'}
+                                    error={errors.status}
                                 />
                             </div>
                             <Button type='submit'>
