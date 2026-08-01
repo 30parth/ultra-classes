@@ -7,21 +7,26 @@ import Heading from '@/components/heading'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import PageLayout from '@/layouts/page-layout'
-import { index as student, create as insertStudent, store } from '@/routes/student'
+import { index as studentRoute, create as insertStudent, store, update } from '@/routes/student'
 import { Form } from '@inertiajs/react'
-import { format } from 'path'
+import { format } from 'date-fns'
 import React, { useState } from 'react'
+import { StudentType } from '@/types/data'
 
-export default function StudentForm() {
+interface Props {
+    student?: StudentType;
+}
 
-    const [date, setDate] = useState<any>('');
+export default function StudentForm({ student }: Props) {
+
+    const [date, setDate] = useState<any>(student?.admission_date ? new Date(student.admission_date) : '');
 
     return (
         <PageLayout title='Student Form'>
             <>
-                <Heading title='Add Student' />
+                <Heading title={student ? 'Edit Student' : 'Add Student'} />
                 <Form
-                    {...store.form()}
+                    {... (student ? update.form(student.id) : store.form())}
                 >
                     {({ processing, errors }) => (
                         <>
@@ -31,22 +36,30 @@ export default function StudentForm() {
                                     name="name"
                                     type="text"
                                     error={errors.name}
+                                    defaultValue={student?.name}
                                 />
                                 <GenderDropDown
                                     name="gender"
                                     label="Gender"
                                     required={true}
                                     error={errors.gender}
+                                    defaultValue={student?.gender}
                                 />
-                                <input className='hidden' name="admisstion_date" defaultValue={date} />
+                                <input
+                                    type="hidden"
+                                    name="admission_date"
+                                    value={date ? (date instanceof Date ? format(date, 'yyyy-MM-dd') : date) : ''}
+                                />
                                 <DatePickerWithLabel
+                                    value={date}
                                     onChange={(fullDate) => { setDate(fullDate) }}
-                                    error={errors.admisstion_date}
+                                    error={errors.admission_date}
                                 />
                                 <StatusDropdown
                                     name={'status'}
                                     label={'Status'}
                                     error={errors.status}
+                                    defaultValue={student?.status}
                                 />
                             </div>
                             <Button type='submit'>
@@ -65,7 +78,7 @@ StudentForm.layout = {
     breadcrumbs: [
         {
             title: "Student",
-            href: student(),
+            href: studentRoute(),
         },
         {
             title: "Add",

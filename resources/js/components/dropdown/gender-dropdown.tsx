@@ -8,14 +8,16 @@ interface Props {
     name: string,
     label: string,
     error: string,
-    required?: boolean
+    required?: boolean,
+    defaultValue?: string
 }
 
 export default function GenderDropDown({
     name,
     label,
     required = false,
-    error }: Props) {
+    error,
+    defaultValue }: Props) {
 
     const items = [
         {
@@ -43,6 +45,7 @@ export default function GenderDropDown({
                 label={label}
                 items={items}
                 placeholder='Select Gender'
+                defaultValue={defaultValue}
             />
             <InputError
                 message={error}

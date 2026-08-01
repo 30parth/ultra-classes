@@ -9,9 +9,10 @@ interface Props {
     label: string
     error: string
     required?: boolean
+    defaultValue?: string
 }
 
-export default function StatusDropdown({ name, label, required = false, error }: Props) {
+export default function StatusDropdown({ name, label, required = false, error, defaultValue }: Props) {
 
     const items = [
         {
@@ -35,6 +36,7 @@ export default function StatusDropdown({ name, label, required = false, error }:
                 label={label}
                 items={items}
                 placeholder='Select Status'
+                defaultValue={defaultValue}
             />
             <InputError
                 message={error}

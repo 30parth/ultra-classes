@@ -40,15 +40,19 @@ class StudentController extends Controller
             'status' => 'required',
         ]);
 
-        $student = new Student;
-        $student->user_id = auth()->id();
-        $student->name = $validated['name'];
-        $student->gender = $validated['gender'];
-        $student->admission_date = $validated['admission_date'];
-        $student->status = $validated['status'];
-        $student->save();
+        try {
+            // code...
+            $student = new Student;
+            $student->user_id = auth()->id();
+            $student->name = $validated['name'];
+            $student->gender = $validated['gender'];
+            $student->admission_date = $validated['admission_date'];
+            $student->status = $validated['status'];
+            $student->save();
 
-        dd($student);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
 
         return redirect()->route('student.index');
     }
@@ -66,7 +70,9 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return Inertia::render('student/form', [
+            'student' => $student,
+        ]);
     }
 
     /**
@@ -74,7 +80,20 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'gender' => 'required',
+            'admission_date' => 'required|date',
+            'status' => 'required',
+        ]);
+
+        try {
+            $student->update($validated);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+
+        return redirect()->route('student.index');
     }
 
     /**

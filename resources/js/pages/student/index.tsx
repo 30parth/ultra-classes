@@ -1,4 +1,4 @@
-import { index as student, create as insertStudent } from "@/routes/student";
+import { index as student, create as insertStudent, edit as editStudent } from "@/routes/student";
 import { Head, Link, usePage } from "@inertiajs/react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -35,13 +35,19 @@ export default function StudentIndex() {
                             <TableRow>
                                 <TableHead>Sr No</TableHead>
                                 <TableHead>Name</TableHead>
+                                <TableHead className="text-right">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {students.map((student: StudentType, index: number) => (
-                                <TableRow>
+                                <TableRow key={student.id}>
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{student.name}</TableCell>
+                                    <TableCell className="text-right">
+                                        <Button variant="ghost" asChild>
+                                            <Link href={editStudent(student.id).url}>Edit</Link>
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

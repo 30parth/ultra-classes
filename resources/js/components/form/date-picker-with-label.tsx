@@ -16,16 +16,35 @@ import { useEffect } from "react"
 import InputError from "../input-error"
 
 interface Props {
-    onChange: (value: any) => void
-    error: string
+    value?: Date | string
+    onChange: (value: Date | undefined) => void
+    error?: string
 }
 
-export function DatePickerWithLabel({ onChange, error }: Props) {
-    const [date, setDate] = React.useState<Date>()
+export function DatePickerWithLabel({ value, onChange, error }: Props) {
+    const [date, setDate] = React.useState<Date | undefined>(() => {
+        if (!value) return undefined;
+        const d = value instanceof Date ? value : new Date(value);
+        return isNaN(d.getTime()) ? undefined : d;
+    });
 
-    useEffect(() => {
-        onChange(date)
-    }, [date])
+    React.useEffect(() => {
+        if (value) {
+            const parsed = value instanceof Date ? value : new Date(value);
+            if (!isNaN(parsed.getTime())) {
+                if (!date || date.getTime() !== parsed.getTime()) {
+                    setDate(parsed);
+                }
+            }
+        } else {
+            if (date) setDate(undefined);
+        }
+    }, [value]);
+
+    const handleSelect = (newDate: Date | undefined) => {
+        setDate(newDate);
+        onChange(newDate);
+    };
 
     return (
         <div className="grid gap-2">
@@ -51,7 +70,7 @@ export function DatePickerWithLabel({ onChange, error }: Props) {
                     <Calendar
                         mode="single"
                         selected={date}
-                        onSelect={setDate}
+                        onSelect={handleSelect}
                         defaultMonth={date}
                     />
                 </PopoverContent>

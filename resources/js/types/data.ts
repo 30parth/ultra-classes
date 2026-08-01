@@ -6,6 +6,6 @@ export type StudentType = {
     gender: 'male' | 'female' | 'other',
     address: string,
     admission_date: string,
-    status: 0 | 1,
+    status: 'active' | 'inactive',
     photo_path: string,
 }
