@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid, User } from 'lucide-react';
+import { BookOpen, FolderGit2, LayoutGrid, LineChart, User } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import { index as student } from '@/routes/student';
+import { index as batch } from '@/routes/batch';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -27,6 +28,11 @@ const mainNavItems: NavItem[] = [
         title: 'Student',
         href: student(),
         icon: User,
+    },
+    {
+        title: 'Batch',
+        href: batch(),
+        icon: LineChart,
     }
 ];
 

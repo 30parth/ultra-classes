@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('batches', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->restrictOnDelete();
             $table->string('name');
-            $table->date('dob')->nullable();
-            $table->enum('gender', ['male', 'female', 'other'])->nullable();
-            $table->string('address')->nullable();
-            $table->date('admission_date');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->string('status')->default('active');
-            $table->string('photo_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('batches');
     }
 };

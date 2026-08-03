@@ -6,6 +6,14 @@ export type StudentType = {
     gender: 'male' | 'female' | 'other',
     address: string,
     admission_date: string,
-    status: 'active' | 'inactive',
+    status: string,
     photo_path: string,
 }
+
+export type BatchType = {
+    id: number,
+    name: string,
+    start_date: string,
+    end_date: string,
+    status: string,
+}   
