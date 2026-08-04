@@ -4,7 +4,7 @@ import { BatchType } from '@/types/data';
 import PageLayout from '@/layouts/page-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { index as batch, create as insertBatch } from "@/routes/batch";
+import { index as batch, create as insertBatch, edit as editBatch } from "@/routes/batch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 export default function BatchIndex() {
@@ -45,7 +45,7 @@ export default function BatchIndex() {
                                     <TableCell>{batch.end_date}</TableCell>
                                     <TableCell>
                                         <Button asChild>
-                                            {/* <Link href={batch(batch.id).url}>Edit</Link> */}
+                                            <Link href={editBatch(batch.id).url}>Edit</Link>
                                         </Button>
                                     </TableCell>
                                 </TableRow>

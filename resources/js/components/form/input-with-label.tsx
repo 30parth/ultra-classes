@@ -27,7 +27,7 @@ export default function InputWithLabel({
         <div className="grid gap-2">
             <Label htmlFor={label}>
                 {label}
-                {required && <Asterisk color='red' />}
+                {required && <Asterisk color='red' size={13} />}
             </Label>
             <Input
                 id={label}

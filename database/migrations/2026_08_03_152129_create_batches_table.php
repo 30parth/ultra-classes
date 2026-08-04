@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('start_date');
-            $table->string('end_date');
+            $table->string('end_date')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
             $table->softDeletes();

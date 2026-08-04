@@ -9,8 +9,7 @@ import { Spinner } from '@/components/ui/spinner'
 import PageLayout from '@/layouts/page-layout'
 import { index as studentRoute, create as insertStudent, store, update } from '@/routes/student'
 import { Form } from '@inertiajs/react'
-import { format } from 'date-fns'
-import React, { useState } from 'react'
+import React from 'react'
 import { StudentType } from '@/types/data'
 
 interface Props {
@@ -18,8 +17,6 @@ interface Props {
 }
 
 export default function StudentForm({ student }: Props) {
-
-    const [date, setDate] = useState<any>(student?.admission_date ? new Date(student.admission_date) : '');
 
     return (
         <PageLayout title='Student Form'>
@@ -45,14 +42,9 @@ export default function StudentForm({ student }: Props) {
                                     error={errors.gender}
                                     defaultValue={student?.gender}
                                 />
-                                <input
-                                    type="hidden"
-                                    name="admission_date"
-                                    value={date ? (date instanceof Date ? format(date, 'yyyy-MM-dd') : date) : ''}
-                                />
                                 <DatePickerWithLabel
-                                    value={date}
-                                    onChange={(fullDate) => { setDate(fullDate) }}
+                                    name="admission_date"
+                                    defaultValue={student?.admission_date}
                                     error={errors.admission_date}
                                 />
                                 <StatusDropdown

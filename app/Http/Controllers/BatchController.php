@@ -23,7 +23,7 @@ class BatchController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('batch/form');
     }
 
     /**
@@ -31,7 +31,15 @@ class BatchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'start_date' => 'required',
+            'status' => 'required',
+        ]);
+
+        $batch = Batch::create($request->all());
+
+        return redirect()->route('batch.index');
     }
 
     /**
@@ -47,7 +55,9 @@ class BatchController extends Controller
      */
     public function edit(Batch $batch)
     {
-        //
+        return Inertia::render('batch/form', [
+            'batch' => $batch,
+        ]);
     }
 
     /**
@@ -55,7 +65,15 @@ class BatchController extends Controller
      */
     public function update(Request $request, Batch $batch)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'start_date' => 'required',
+            'status' => 'required',
+        ]);
+
+        $batch->update($request->all());
+
+        return redirect()->route('batch.index');
     }
 
     /**
