@@ -16,4 +16,11 @@ export type BatchType = {
     start_date: string,
     end_date: string,
     status: string,
-}   
+}
+
+export type StandardType = {
+    id: number,
+    standard_name: string,
+    standard_code: string,
+    status: string,
+}
